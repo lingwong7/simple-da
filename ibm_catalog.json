@@ -4,7 +4,7 @@
       "name": "simple-da",
       "label": "Simple deployable architecture",
       "product_kind": "solution",
-      "version": "1.0.26",
+      "version": "1.0.27",
       "tags": [
         "network_vpc",
         "Technology"
@@ -43,11 +43,11 @@
             "controls": [
               {
                 "profile": {
-                  "name": "IBM Cloud Security Best Practices",
-                  "version": "1.2.0"
+                  "name": "IBM Cloud for Financial Services",
+                  "version": "1.4.0"
                 },
                 "names": [
-                  "4.39"
+                  "SA-4(b)"
                 ]
               }
             ]

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.27 - 2023-09-19
+
+### Added
+### Changed
+   * Use Financial Services profile
+### Fixed
+
 ## 1.0.23 - 2023-05-04
 
 ### Added
