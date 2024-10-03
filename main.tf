@@ -32,7 +32,7 @@ locals {
 }
 
 resource "ibm_resource_group" "group" {
-  name = "${local.basename}-group"
+  name = "${local.basename}"
   tags = var.tags
 }
 
