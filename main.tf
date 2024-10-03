@@ -27,7 +27,8 @@ resource "random_string" "random" {
 }
 
 locals {
-  basename = lower(var.prefix == "" ? "simple-da-${random_string.random.0.result}" : var.prefix)
+  # Use a conditional expression to avoid indexing errors
+  basename = lower(var.prefix == "" ? "simple-da-${random_string.random[0].result}" : var.prefix)
 }
 
 resource "ibm_resource_group" "group" {
