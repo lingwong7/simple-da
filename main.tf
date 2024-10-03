@@ -34,42 +34,29 @@ locals {
 data "ibm_resource_group" "group" {
   name = "default"
 }
+resource "ibm_cloudant" "cloudant" {
+  name     = "cloudant-service-name"
+  location = "us-south"
+  plan     = "lite"
 
+  legacy_credentials  = true
+  include_data_events = false
+  capacity            = 1
+  enable_cors         = true
 
+  cors_config {
+    allow_credentials = false
+    origins           = ["https://example.com"]
+  }
 
-#resource "ibm_resource_group" "group" {
-#  name = "${local.basename}"
- # tags = var.tags
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "15m"
+  }
+}
+
+#output "vpc_id" {
+#  description = "ID of the created VPC"
+#  value       = ibm_is_vpc.vpc.id
 #}
-
-resource "ibm_iam_access_group" "administrators" {
-  name        = "${local.basename}-administrators"
-  description = "Administrators for ${local.basename}"
-  tags        = var.tags
-}
-
-resource "ibm_iam_access_group" "operators" {
-  name        = "${local.basename}-operators"
-  description = "Operators for ${local.basename}"
-  tags        = var.tags
-}
-
-resource "ibm_iam_access_group" "developers" {
-  name        = "${local.basename}-developers"
-  description = "Developers for ${local.basename}"
-  tags        = var.tags
-}
-
-resource "ibm_is_vpc" "vpc" {
-  resource_group              = data.ibm_resource_group.group.id
-  name                        = "${local.basename}-vpc"
-  default_security_group_name = "${local.basename}-sec-group"
-  default_network_acl_name    = "${local.basename}-acl-group"
-  default_routing_table_name  = "${local.basename}-routing-table"
-  tags                        = var.tags
-}
-
-output "vpc_id" {
-  description = "ID of the created VPC"
-  value       = ibm_is_vpc.vpc.id
-}
