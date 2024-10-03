@@ -31,10 +31,16 @@ locals {
   basename = lower(var.prefix == "" ? "simple-da-${random_string.random[0].result}" : var.prefix)
 }
 
-resource "ibm_resource_group" "group" {
-  name = "${local.basename}"
-  tags = var.tags
+data "ibm_resource_group" "group" {
+  name = "default"
 }
+
+
+
+#resource "ibm_resource_group" "group" {
+#  name = "${local.basename}"
+ # tags = var.tags
+#}
 
 resource "ibm_iam_access_group" "administrators" {
   name        = "${local.basename}-administrators"
