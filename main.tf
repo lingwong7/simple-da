@@ -61,7 +61,7 @@ resource "ibm_iam_access_group" "developers" {
 }
 
 resource "ibm_is_vpc" "vpc" {
-  resource_group              = ibm_resource_group.group.id
+  resource_group              = data.ibm_resource_group.group.id
   name                        = "${local.basename}-vpc"
   default_security_group_name = "${local.basename}-sec-group"
   default_network_acl_name    = "${local.basename}-acl-group"
